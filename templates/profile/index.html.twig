@@ -6,4 +6,16 @@
     <div class="mb-3">
         You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
     </div>
+
+    <h2>Post</h2>
+    <ul>
+        <li>
+            <a href="{{ path('post_index') }}">Post Index</a>
+        </li>
+        <li>
+            <a href="{{ path('post_new') }}">New Post</a>
+        </li>
+    </ul>
+        <tr>
+        </tr>
 {% endblock %}
