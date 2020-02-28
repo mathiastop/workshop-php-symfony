@@ -1,4 +1,4 @@
-# workshopdocker
+# workshop-php-symfony
 Découverte du framework Symfony version 4 de PHP via la création d'un blog basique.
 
 Blog composé de:
