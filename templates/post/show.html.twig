@@ -19,19 +19,32 @@
                 <th>Body</th>
                 <td>{{ post.body }}</td>
             </tr>
-{#            <tr>#}
-{#                <th>Comment</th>#}
-{#                {% for comment in post.comments %}#}
-{#                    <td>{{ comment }}</td>#}
-{#                {% endfor %}#}
-{#            </tr>#}
+            <tr>
+                <th>Comments</th>
+                {% if post.comments is defined %}
+                    {% for comment in post.comments %}
+                        <td>
+                            Author: {{ comment.author.username }}
+                            <br/>
+                            Body: {{ comment.body }}
+                            <br/>
+                            <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
+                            {% if comment.author == app.user %}
+                                <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                {% else %}
+                    <td>No Comment</td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 
+    <a href="{{ path('comment_new', {'post_id':post.id}) }}">add comment</a>
     <a href="{{ path('post_index') }}">back to list</a>
 
     {% if app.user == post.author %}
-        <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
         {{ include('post/_delete_form.html.twig') }}
     {% endif %}
 
